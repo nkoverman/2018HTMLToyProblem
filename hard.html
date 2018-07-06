@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Navigation Test</title>
+    <style>
+      /* Orient navigation horizontally */
+      #navigation li {
+        display: inline;
+        list-style: none;
+      }
+      
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      
+      /* Hide dropdown content by default */
+      .dropdown-content {
+        display: none;
+        position: absolute;
+      }
+      
+      /* Orient Dropdown options vertically */
+      .dropdown-content a {
+        display: block;
+      }
+      
+      /* Display Dropdown on hover */
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+    </style>
+  
+  </head>
+  
+  <body>
+    <header>
+      <nav>
+        <ul id="navigation">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">News</a></li>
+          <li>
+            <div class="dropdown">
+              <a href="#" class="dropmenu">Shop</a>
+              <div class="dropdown-content">
+                <a href="#">Outdoors</a>
+                <a href="#">Indoors</a>
+                <a href="#">Clearance</a>
+              </div>
+            </div>
+          </li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+  
+  </body>
+
+</html>
