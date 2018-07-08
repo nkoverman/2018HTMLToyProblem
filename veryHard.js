@@ -40,36 +40,45 @@ function rearrangeFull() {
 }
 
 function displayResult() {
-  console.log(`displayResult receives namesSorted as: ${namesSorted}`)
-  document.getElementById('result').innerHTML = namesSorted.join(", ");
+  //console.log(`displayResult receives namesSorted as: ${namesSorted}`)
+  //document.getElementById('result').innerHTML = namesSorted.join(", ");
+  for (i = 0; i < namesSorted.length; i++) {
+    document.getElementById('alphabetical-by-Last-Name').insertAdjacentHTML(`beforeend`, `<li>${namesSorted[i]}</li>`);
+  }
 }
 
-function reset() {
+function clearField() {
   document.getElementById('names').value = "";
+}
+
+function init() {
+  document.getElementById('alphabetical-by-Last-Name').innerHTML = "";
   namesFull = [];
   namesLast = [];
-  namesSorted = [];  
+  namesSorted = []; 
 }
 
 function alphabetize(input) {
-  //1) Create names array, split from user input
+  //1) Initialize
+  init();
+  
+  //2) Create names array, split from user input
   getNames();
   
-  //2) Map last names into new array
+  //3) Map last names into new array
   getLasts();
   
-  //3) Sort last names array alphabetically
+  //4) Sort last names array alphabetically
   sortLasts();
   
-  //4) Use that order to reset Full Names array
+  //5) Use that order to reset Full Names array
   rearrangeFull();
   
-  //6) Display on UI
+  //6) Display Result as ordered list in UI;
   displayResult();
   
-  //5) Clear input field and data
-  reset();
-  
+  //7) Clear input field
+  clearField();
 }
 
 window.onload = function () {
