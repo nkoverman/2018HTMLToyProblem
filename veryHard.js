@@ -3,6 +3,13 @@ var namesFull = [];
 var namesLast = [];
 var namesSorted = [];
 
+function init() {
+  document.getElementById('alphabetical-by-Last-Name').innerHTML = "";
+  namesFull = [];
+  namesLast = [];
+  namesSorted = []; 
+}
+
 function getNames() {
   input = document.getElementById('names').value;
   namesFull = input.split(", ");
@@ -40,8 +47,6 @@ function rearrangeFull() {
 }
 
 function displayResult() {
-  //console.log(`displayResult receives namesSorted as: ${namesSorted}`)
-  //document.getElementById('result').innerHTML = namesSorted.join(", ");
   for (i = 0; i < namesSorted.length; i++) {
     document.getElementById('alphabetical-by-Last-Name').insertAdjacentHTML(`beforeend`, `<li>${namesSorted[i]}</li>`);
   }
@@ -51,24 +56,17 @@ function clearField() {
   document.getElementById('names').value = "";
 }
 
-function init() {
-  document.getElementById('alphabetical-by-Last-Name').innerHTML = "";
-  namesFull = [];
-  namesLast = [];
-  namesSorted = []; 
-}
-
 function alphabetize(input) {
   //1) Initialize
   init();
   
-  //2) Create names array, split from user input
+  //2) Create Names array, split from user input
   getNames();
   
-  //3) Map last names into new array
+  //3) Map Last Names into new array
   getLasts();
   
-  //4) Sort last names array alphabetically
+  //4) Sort Last Names array alphabetically
   sortLasts();
   
   //5) Use that order to reset Full Names array
