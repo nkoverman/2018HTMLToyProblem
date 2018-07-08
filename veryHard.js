@@ -13,8 +13,8 @@ function getLasts() {
   for (var i = 0; i < namesFull.length; i++) {
     namesLast.push(namesFull[i].split(" ")[1]);
   }
-  console.log(`getLasts receives namesFull as: ${namesFull}`);
-  console.log(`getLasts outputs namesLast as: ${namesLast}`);
+  //console.log(`getLasts receives namesFull as: ${namesFull}`);
+  //console.log(`getLasts outputs namesLast as: ${namesLast}`);
 }
 
 function sortLasts() {
@@ -24,18 +24,33 @@ function sortLasts() {
 
 function rearrangeFull() {
   //if the second word of the new name array matches the first item in namesLast, push to namesSorted. Remove the that first item from namesLast.
-  for (i = 0; i < namesFull.length; i++) {
-    if (namesFull[i].split(" ")[1] === namesLast[i]) {
-      namesSorted.push(namesFull[i]);
-      namesLast.splice(0, 1);
-    };
-    if (namesLast > 0 && i === namesFull.length) {
-      i=0;
-    };
+  
+  restartLoop:
+  while (true) {
+    for (i = 0; i < namesFull.length; i++) {
+      console.log(`rearrangeFull iteration ${i}`)
+      console.log(`New namesSorted is: ${namesSorted}`);
+      console.log(`i+1 = ${i+1} and namesFull.length = ${namesFull.length}`);
+
+      if (namesFull[i].split(" ")[1] === namesLast[0]) {
+        //console.log(`namesFull[i].split(" ")[1] is ${namesFull[i].split(" ")[1]}`);
+        //console.log(`namesLast[0] is ${namesLast[0]}`);
+        namesSorted.push(namesFull[i]);
+        namesLast.splice(0, 1);
+        //console.log(`New namesLast is: ${namesLast}`);
+      }
+      
+      if (namesLast.length > 0 && i+1 === namesFull.length) {
+        continue restartLoop;
+      }
+    }
+    break;
+
   }
 }
 
 function displayResult() {
+  console.log(`displayResult receives namesSorted as: ${namesSorted}`)
   document.getElementById('result').innerHTML = namesSorted.join();
 }
 
