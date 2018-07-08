@@ -5,41 +5,31 @@ var namesSorted = [];
 
 function getNames() {
   input = document.getElementById('names').value;
-  namesFull = input.split(",");
-  //console.log(`getName() returns namesFull as: ${namesFull}`);
+  namesFull = input.split(", ");
 }
 
 function getLasts() {
   for (var i = 0; i < namesFull.length; i++) {
     namesLast.push(namesFull[i].split(" ")[1]);
   }
-  //console.log(`getLasts receives namesFull as: ${namesFull}`);
-  //console.log(`getLasts outputs namesLast as: ${namesLast}`);
 }
 
 function sortLasts() {
   namesLast.sort();
-  console.log(`sortLasts() returns namesLast as: ${namesLast}`);
 }
 
 function rearrangeFull() {
-  //if the second word of the new name array matches the first item in namesLast, push to namesSorted. Remove the that first item from namesLast.
-  
   restartLoop:
   while (true) {
     for (i = 0; i < namesFull.length; i++) {
-      console.log(`rearrangeFull iteration ${i}`)
-      console.log(`New namesSorted is: ${namesSorted}`);
-      console.log(`i+1 = ${i+1} and namesFull.length = ${namesFull.length}`);
-
+      
+      //Use the sorted last name array to build new sorted array in order
       if (namesFull[i].split(" ")[1] === namesLast[0]) {
-        //console.log(`namesFull[i].split(" ")[1] is ${namesFull[i].split(" ")[1]}`);
-        //console.log(`namesLast[0] is ${namesLast[0]}`);
         namesSorted.push(namesFull[i]);
         namesLast.splice(0, 1);
-        //console.log(`New namesLast is: ${namesLast}`);
       }
       
+      //Restart the loop if there are still names to be sorted
       if (namesLast.length > 0 && i+1 === namesFull.length) {
         continue restartLoop;
       }
@@ -51,7 +41,7 @@ function rearrangeFull() {
 
 function displayResult() {
   console.log(`displayResult receives namesSorted as: ${namesSorted}`)
-  document.getElementById('result').innerHTML = namesSorted.join();
+  document.getElementById('result').innerHTML = namesSorted.join(", ");
 }
 
 function reset() {
